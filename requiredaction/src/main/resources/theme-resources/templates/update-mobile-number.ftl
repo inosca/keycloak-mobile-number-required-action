@@ -3,7 +3,6 @@
     <#if section = "header">
         ${msg("updateMobileTitle")}
     <#elseif section = "form">
-			<h2>${msg("updateMobileHello",(username!''))}</h2>
 			<p>${msg("updateMobileText")}</p>
 			<form id="kc-mobile-update-form" class="${properties.kcFormClass!}" action="${url.loginAction}" method="post">
 				<div class="${properties.kcFormGroupClass!}">
@@ -16,8 +15,9 @@
               <#if messagesPerField.existsError('mobile_number')>
 								<span id="input-error-mobile-number" class="${properties.kcInputErrorMessageClass!}" aria-live="polite">
 										${kcSanitize(messagesPerField.get('mobile_number'))?no_esc}
-								</span>
+								</span><br />
               </#if>
+							<span class="uk-text-small uk-text-muted">${msg("mobileNumberHelp")}</span>
 					</div>
 				</div>
 				<div class="${properties.kcFormGroupClass!}">
