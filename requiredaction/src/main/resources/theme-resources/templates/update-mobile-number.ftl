@@ -4,6 +4,7 @@
         ${msg("updateMobileTitle")}
     <#elseif section = "form">
 			<p>${msg("updateMobileText")}</p>
+			<p><strong>${msg("updateMobileHint")}</strong></p>
 			<form id="kc-mobile-update-form" class="${properties.kcFormClass!}" action="${url.loginAction}" method="post">
 				<div class="${properties.kcFormGroupClass!}">
 					<div class="${properties.kcLabelWrapperClass!}">
