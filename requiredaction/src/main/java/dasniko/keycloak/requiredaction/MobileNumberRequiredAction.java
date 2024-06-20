@@ -28,11 +28,10 @@ public class MobileNumberRequiredAction implements RequiredActionProvider {
 
 	@Override
 	public void evaluateTriggers(RequiredActionContext context) {
-		// you would implement something like the following, if this required action should be "self registering" at the user
-		// if (context.getUser().getFirstAttribute(MOBILE_NUMBER_FIELD) == null) {
-		// 	context.getUser().addRequiredAction(PROVIDER_ID);
-		//  context.getAuthenticationSession().addRequiredAction(PROVIDER_ID);
-		// }
+		if (context.getUser().getFirstAttribute(MOBILE_NUMBER_FIELD) == null) {
+			context.getUser().addRequiredAction(PROVIDER_ID);
+			context.getAuthenticationSession().addRequiredAction(PROVIDER_ID);
+		}
 	}
 
 	@Override
@@ -51,7 +50,10 @@ public class MobileNumberRequiredAction implements RequiredActionProvider {
 		String mobileNumber = formData.getFirst(MOBILE_NUMBER_FIELD);
 
 		if (Validation.isBlank(mobileNumber) || mobileNumber.length() < 5) {
-			context.challenge(createForm(context, form -> form.addError(new FormMessage(MOBILE_NUMBER_FIELD, "Invalid input"))));
+			context.challenge(createForm(context, form -> form.addError(new FormMessage(
+				MOBILE_NUMBER_FIELD,
+				"Bitte erfassen Sie eine gültige Telefonnummer"
+			))));
 			return;
 		}
 
